@@ -1,0 +1,284 @@
+%===============================================================================
+% $Id: ifacconf.tex 19 2011-10-27 09:32:13Z jpuente $  
+% Template for IFAC meeting papers
+% Copyright (c) 2007-2008 International Federation of Automatic Control
+%===============================================================================
+\documentclass{elsarticle}
+\usepackage{textcomp}
+\usepackage[utf8x]{inputenc} 
+\usepackage[T1]{fontenc}
+\usepackage[brazil,portuges]{babel}
+\bibliographystyle{elsarticle-harv}
+\biboptions{authoryear}
+\usepackage{lipsum}
+\usepackage{caption} 
+\usepackage{hhline} % para usar linha dupla na tabela
+\usepackage{tabularx} % para igualar colunas
+\usepackage{dcolumn} % para efetuar alinhamento
+
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{graphicx}      % include this line if your document contains figures
+\usepackage{indentfirst}
+\usepackage{subfigure}
+%===============================================================================
+\begin{document}
+\begin{frontmatter}
+
+\title{Determination of soil moisture levels using the dynamic biospeckle} 
+% Title, preferably not more than 10 words.
+
+\author[First]{Diego.V} 
+\author[Second]{Adilson E.}
+\author[Room]{Silvestre R.}
+\author[Third]{Catuxe V.}
+%author[Fifth]{Paulo R.}
+
+
+\address[First]{Universidade Federal de Sergipe, SE 49100-000 BR (e-mail: vidal.center@academico.ufs.br).}
+\address[Second]{Universidade Federal de Sergipe, SE 49100-000 BR (e-mail: adilsonenes@gmail.com).}
+\address[Room]{Universidade Federal de Sergipe, SE 49100-000 BR (e-mail: silvestrerod@yahoo.com.br).}
+\address[Third]{Instituto Federal de Sergipe, SE 49055-260 BR (e-mail: catuxe@academico.ifs.edu.br).}
+%\address[Fifth]{Universidade Federal de Sergipe, SE 49100-000 BR (e-mail: prgagli@ufs.br).}
+
+
+\begin{abstract}% Abstract of not more than 250 words.
+
+O presente trabalho propôs avaliar a atividade da água no solo utilizando processamento de imagens, como ferramentas foram utilizados os métodos avaliativos da História Temporal do Speckle \textbf{(STS)} e das Matrizes de Ocorrências Modificadas \textbf{(MOC)}, procedimentos utilizados para avaliar a atividade biológica tendo como base o método de biospeckle, de forma não deletéria e não invasiva.  O principal objetivo consiste no modelamento  comportamental do biospeckle dinâmico, sobretudo nos aspectos relacionados à umidade crescente em Argissolo vemelho-amarelo. O biospeckle é um fenômeno óptico de interferência que ocorre quando há incidência de luz coerente em um material biológico que exibe algum tipo de atividade, fenômeno que pode ser viável para análise das atividades decorrentes da umidade do solo. Neste trabalho foi utilizado as Transformadas de Wavelets \textbf{(TW)} buscando eliminar ruídos externos  ocorridos durante os ensaios. Foram utilizadas como ferramentas de coleta um laser HeNe 632nm, uma câmera que captura 32 frames por segundo e um software para os processamentos digitais. O delineamento experimental foi inteiramente casualizado \textbf{(DIC)} com 70 amostras de solo, divididas em sete tratamentos (níveis de umidade) cujos valores foram 13\%, 16\%, 19\%, 21\%, 24\%, 27\% e 30\%. Para cada repetição foi gerado um vídeo de cinco segundos. Todos os níveis de umidade foram calculados através da determinação de umidade por secagem. O experimento demostrou haver diferença significativa entre as umidades aplicadas no solo com p-value de 5,15E-15, comportando-se como polinomial de 3ª ordem, ajustando ao valor de R2 = 0,94. O método mostrou sensibilidade a níveis de umidade indo de 13 a 24\% de umidade tanto nos mapeamentos das atividades com base nas \textbf{DG}s quanto nos \textbf{(MI)}s. Desta forma, o método de biospeckle mostrou resultados favoráveis em termos de monitoramento de umidade e predição dos níveis em solo classificado como Argissolo Vermelho-amarelo, comprovando a possibilidade de implementação prática deste método para a determinação dos níveis de umidade no Argissolo vermelho-amarelo.
+\end{abstract}
+
+
+
+\begin{keyword}
+Trasnformada de Fourier, laser HeNe, Teor de água, Processamento de imagens, Física do Solo
+\end{keyword}
+
+
+\end{frontmatter}
+%===============================================================================
+
+%citep = (Autor, Ano)
+%citet Autor, (Ano)
+
+\section{Introduction}
+
+ %Primeiro parágrafo 
+ A atividade da água no solo é responsável pelo desenvolvimento da cultura agrícola cultivável \citep{ZHANG2017} e pela absorção de nutrientes \citep{Trinh2016}, fazendo com que estes, se tornem disponíveis para as plantas, já em materiais biológicos, os níveis de atividades estão diretamente relacionados a diversos fatores como viabilidade celular, troca de gases, respiração, atividade microbiana. Analisar estas atividades são de suma importância para a agricultura, pois o sucesso da cultura esta estritamente relacionado a presença da água e matéria orgânica no solo \citep{Cotching2018}. Para atingir este propósito, sensores são instalados nas máquinas, ou diretamente no solo permitindo que dados referentes a umidade sejam modelados o que possibilita um controle mais efetivo, preciso e econômico. Por outro lado, o uso destes equipamentos pode ser oneroso ou requerer elevado tempo para os resultados. Diversos fenômenos têm sido estudado como potencial ferramenta para análise de qualidade e viabilidade de diversos materiais biológicos, de forma rapida e não destrutiva, dentre eles o  biospeckle  dinâmico laser que pode ser descrito segundo \citet{Enes2006} como um fenômeno óptico de interferência que ocorre quando há incidência de luz coerente em um material biológico que exibe algum tipo de atividade, atualmente o biospeckle se mostra viável para analise de diversos materiais.
+ 
+%Segundo parágrafo 
+Este método demonstrou viabilidade em produtos agricolas, a titulo de exemplo temos \cite{Alves2013} que, induzindo cenouras a diferentes níveis de umidade, comprovaram a influência do teor de água e da respiração nos resultados do biospeckle, ou por \cite{Vivas2017}, este método é capaz de predizer tanto a qualidade do grão de café quanto à sua capacidade de germinação, e que os níveis da atividade do biospeckle esta estritamente relacionado com a umidade dos grãos durante incidência de luz coerente, outro trabalho que demonstrou ser capaz de analisar o biospckle da água foi \citep{Cardoso2011}, que demostraram a possiblidade de criar mapas de frequência em sementes de milho isolando a atividade da água utilizando como filtro a transformada Wavelet, outros trabalhos comprovam a existencia do fenomeno em diversos materiais, \cite{Carvalho2009} determina a capacidade de inseminação de sêmem bovino, \cite{Sutton2017} viabilidade de sementes de trigo e a identificação de espécies de fungos  por \cite{Hadian2008a}, direcionado a atividade em água \cite{Viana2017} descreve ser possível estimar desinfecção de águas residuárias submetidas à cloração, através do fenômeno.
+
+ 
+ %Terceiro parágrafo
+Até o momento, as propostas de utilização do biospeckle laser têm ficado restritas ao laboratório, dentre as principais técnicas empregadas na análise do fenômeno são as baseadas na variação temporal dos dados com estatísticas de primeira e segunda ordem, tais como a História Temporal do Speckle \textbf{(STS)} e as Matrizes de Ocorrências Modificadas \textbf{(MOC)}, permitindo tanto a criação de mapas de atividades, empregando técnicas tais como as Diferenças Generalizadas \textbf{(DG)} e o Método de Fujji, como a quantificação do fenômeno, empregando a técnica conhecida como Momento de Inércia \textbf{(MI)} ou Módulo de Dispersão de Intensidades \textbf{(MDI)}, porem este métodos demonstram ser influenciados por diversos fatores como a vibração ambiental e ruídos externos, os quais podem interferir nas medições, exigindo que as mesmas sejam feitas em ambiente controlado. No entanto, estudos recentes envolvendo a análise de bandas de frequências do biospeckle laser \citet{Lama2016}, demonstram ser possível utilizar as Transformadas de Wavelets \textbf{(TW)} e as Transformadas de Fourier \textbf{(TF)} e Transformada de Fourier Janelada \textbf{(TFJ)}, para isolar frequências do padrão de atividade do biospeckle, permitindo assim, estabelecer uma correlação entre determinadas frequências e os elementos físicos e/ou biológicos que as perturbaram.
+  
+%Quarto parágrafo
+O embasamento teórico associado ao fenômeno biospeckle laser, permite supor que a atividade da água no solo pode ser quantificada de forma indireta, e suas perturbações nas frequências de atividade podem ser estudadas e modeladas com técnicas de análise de frequência. Como a água costuma estar presente no solo em abundancia, influenciando todo comportamento deste, poderá influenciar nas atividades físicas naturais do solo. Diante dos fatos apresentados, este projeto visa propor o estudo e modelamento da frequência de interferência da água no solo por meio do fenômeno biospeckle laser e avaliar o potencial do biospeckle laser empregado no monitoramento de teor de água em um solo de textura arenosa, típico do estado de Sergipe. Este conhecimento será importante, pois no futuro, poderá ser usado para o desenvolvimento de sensores que permitirão indicar de forma indireta, a atividade do solo em diferentes níveis de umidade, contribuindo para aumentar os parâmetros de monitoramento e mapeamento para a agricultura de precisão e manejo na irrigação. 
+
+ \section{Materials and methods}
+
+\subsection{Soil samples} 
+As amostras do solo foram coletadas no Campus Rural Universitário da Universidade Federal de Sergipe, local que apresenta solos classificado segundo \cite{EmbrapaSolos1973} como Argissolo Vermelho Amarelo, \ref{fig:trincheira}, a tabela \ref{qui:solo} descreve as químicas, determinadas através da analise de solos realizada no Instituto de Pesquisa de Sergipe (ITPS), análise foi realizada em amostra de argissolo fina seca em estufa (t.f.s.e.) a 40ºC. \ref{qui:solo}
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=8.4cm]{figure/materiais/Imagem1.png}
+\caption{Trincheira onde foi retirada as amostras de solo para analise de Umidade} 
+\label{fig:trincheira}
+\end{center}
+\end{figure}
+
+
+\begin{table}[h!]\footnotesize
+\centering
+\caption{Chemical analysis of soil samples}
+\label{qui:solo}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+Ensaio                           & Resultado       & Unidade   & LQ   & Método              \\ \hline
+Matéria Orgânica                 & 12,9            & g/dm3     & --   & WB 			 \\ \hline
+Magnésio                         & 1,05            & cmolc/dm3 & --   & KCl                 \\ \hline
+Sódio                            & 0,038           & cmolc/dm3 & --   & Mehlich-1           \\ \hline
+Potássio                         & 0,05            & cmolc/dm3 & --   & Mehlich-1           \\ \hline
+Hidrogênio + Alumínio            & 1,82            & cmolc/dm3 & --   & SMP                 \\ \hline
+pH em SMP                        & 6,7             & --        & --   & MAQS-Embrapa        \\ \hline
+SB-Soma de Bases Trocáveis       & 2,46            & cmolc/dm3 & --   & --                  \\ \hline
+CTC                              & 4,28            & cmolc/dm3 & --   & --                  \\ \hline
+PST                              & 0,89            & \%        & --   & --                  \\ \hline
+V - Índice de Saturação de Bases & 57,5            & \%        & --   & --                  \\ \hline
+pH em Água              & 5,82            & --        & --   & H2O                 \\ \hline
+Cálcio + Magnésio       & 2,37            & cmolc/dm3 & 0,38 & KCl                 \\ \hline
+Cálcio                  & 1,32            & cmolc/dm3 & 0,22 & KCl                 \\ \hline
+Alumínio                  & \textless{}0,08 & cmolc/dm3 & 0,08 & KCl                 \\ \hline
+Sódio                  & 8,7             & mg/dm3    & 2,2  & Mehlich-1           \\ \hline
+Potássio                & 20,9            & mg/dm3    & 1,4  & Mehlich-1           \\ \hline
+Fósforo                 & 1,4             & mg/dm3    & 1,39 & Mehlich-1           \\ \hline
+\end{tabular}
+\caption*{Legenda: LQ Limite de Quantificação do Método}
+\end{table}
+\newpage
+\subsection{Delineamento Experimental}
+
+De mãos  das amostras de solo, para analisar o nível atual de umidade do solo coletado, foram pesadas em balança semi-analítica Figura \ref{materiais}a, cinco amostras de aproximadamente 50g e posteriormente levadas a estufa a 105º durante vinte e quatro horas. De mãos dos valores das amostras pós estufa Figura 4, foi verificado o nível de umidade através do método de determinação de umidade por estufa, o qual se obteve 11\% de umidade no solo, valor considerado o inicial aos experimentos.
+A partir do valor de umidade inicial (11\%), pode-se separar a amostra de solo maior em sete amostras menores de aproximadamente 1kg cada, para diferentes níveis de umidades, os quais se diferenciam em 2,72\% a mais que o anterior, ate que foi alcançada a umidade de 30\%, tabela 2 para o aumento de umidade foi utilizada água destilada, pipeta graduada de 25ml Figura 5, para conversão de grama (g) em mililitro (mL), foi considerada temperatura da água a 24ºC. 
+
+\begin{figure}[h]
+\subfigure[ref1][Balança semi-analítica]{\includegraphics[width=5cm]{figure/materiais/balanca.png}}
+\qquad
+\subfigure[ref2][Pipeta Graduada]{\includegraphics[width=5cm]{figure/materiais/pipeta.png}}
+\caption{Equipamentos para pesagem das amostras e separação das umidades}
+\label{materiais}
+\end{figure}
+
+
+%tabela 
+\begin{table}[th]\footnotesize
+\centering
+\caption{Tratamentos}
+\label{niveis_tratamento}
+\begin{tabular}{|p{1,3cm}|p{1,3cm}|p{1,3cm}|p{1,3cm}|p{1,3cm}|p{1,3cm}|p{1,3cm}|}
+\hline
+\multicolumn{7}{|c|}{\textbf{Níveis de Tratamentos}}                              \\ \hline
+Umidade 1 & Umidade 2 & Umidade 3 & Umidade 4 & Umidade 5 & Umidade 6 & Umidade 7 \\ \hline
+13\%   & 16\%   & 19\%   & 21\%   & 24\%   & 27\%   & 30\%   \\ \hline
+24,513mL  & 49,03mL   & 73,54mL   & 98,05mL   & 122,56mL  & 147,08mL  & 171,59mL  \\ \hline
+\end{tabular}
+\end{table}
+
+
+
+\subsubsection{Methodology for image capture}
+
+Com o Lazer HeNe 632nm incidindo nas amostras de solo \ref{fig:laser}, foram coletadas imagens através de método direto que consistia dos vídeos  direto da câmera através de um cabo AVI e uma conectado em uma placa de vídeo assim, a aquisição dos frames através da quebra do vídeo já roda diretamente no software principal da pesquisa com um intervalo de 0.15 segundos para as aquisições que equivale o tempo de aquisição da câmera para cada frame, evitando assim a interpolação de imagens, a perda de arquivos e principalmente a interferência durante a coleta das imagens.
+
+\begin{figure}[h]
+\subfigure[ref1][HeNe 630nm e Câmera]{\includegraphics[width=5cm]{figure/materiais/laser.png}}
+\qquad
+\subfigure[ref2][Esquematização do setup \citep{Costa2017}]{\includegraphics[width=5cm]{figure/materiais/setup.jpg}}
+\caption{Esquema demostrativo dos materiais utilizados na captura das imagens.}
+\label{fig:laser}
+\end{figure}
+
+
+\newpage
+\subsection{Statistical analysis}
+
+Para a avaliação da normalidade dos dados foi utilizado o teste de Normalidade Shapiro Wilk (SK) o qual constou que os dados seguem normalidade aceitável para utilização do método de analise de variância de um fator (ANOVA). As médias, a partir dos dados obtidos das sete umidades avaliadas, foram submetidas à análise de variância (ANOVA) e analise de regressão não linear, com melhor ajuste para o modelo logístico, para determinar o comportamento sob a perspectiva de progressão em umidade, foi testado os modelos lineares e polinomial, considerando o melhor ajuste com R2 ≥ 80\%.
+
+\section{Results}
+
+\subsection{Results of the analysis of the moment of inertia}
+
+
+Os valores de Momento de Inercia capturados pelo método de biospeckle dinâmico apresentaram diferença significativa, valores constantes na Tabela 3. Com relação ao comportamento da regressão, os primeiros níveis demonstraram um comportamento linear, decaindo no nível 5 o qual apresenta aproximadamente 25\% de umidade.
+
+\begin{table}[ht]\footnotesize
+\centering
+\caption{Análise de Variância com significância a 5\%}
+\label{anova}
+\begin{tabular}{|c|l|l|l|l|l|l|}
+\hline
+Fonte de variação & SQ       & gl & MQ         & F           & valor P                         & F crítico   \\ \hline
+Entre grupos      & 1,05E+12 & 6  & 1,75E+11   & 25,17 & {\color[HTML]{FD6864} 5,15E-15} & 2,24 \\ \hline
+Dentro de grupos  & 4,38E+11 & 63 & 6951658889 &             &                                 &             \\ \hline
+Total             & 1,49E+12 & 69 &            &             &                                 &             \\ \hline
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[h]
+\includegraphics[width=12cm]{figure/materiais/regressao.png}
+\caption{Gráfico de regressão} 
+\label{fig:regressao}
+\end{figure}
+
+
+
+
+\subsection{Frequency Mapping by Fourier and Wavelets preliminary tests}
+
+Os resultados mostram haver correlação entre a quantidade de água e os níveis de atividade monitorados pelo biospeckle laser, conforme pode ser observados nos diferentes níveis. Partido da Figura \ref{atividades1}a à Figura  \ref{atividades7}a, resultantes do processamento com o  método DG  e reconstrução de uma única banda de frequência. Onde nas umidades mais baixas \ref{atividades6}a, \ref{atividades7}a apresenta baixa atividade representada principalmente pelas cores azul e verde de tons mais escuros, já as imagens \ref{atividades3}, \ref{atividades4}  e \ref{atividades5}. O uso de apenas uma banda para o processamento com o DG demonstrou seletividade em diferentes níveis de umidade para as amostras de solo. \citet{Cardoso2011} demostrou haver influência dos diferentes níveis de água em grãos de milho influenciam as taxas de atividades registradas pelo biospeckle onde, o grão com presenças de rachaduras e conseguinte maior evaporação da água apresentou níveis maiores de atividade que os grão que não apresentaram rachaduras, corroborando com este experimento, haja vista que, quanto maior a presença da água no material biológico,  maior os níveis de biospeckle, porem quando essa quantidade de água sobressai a quantidade do material analisado mais difícil se torna a padronização desta atividade, muito provavelmente pela ocorrência da redução de muito provavelmente pela inconsistência dos padrões de  reflectância da luz coerente, além de interferir diretamente na proporção da matéria orgânica presente no solo demonstrada na Tabela \ref{qui:solo} 12\%, material que por ventura poderia registrar atividade de fungos e micro-organismos \citep{Kovacec2017a}. Utilizando a Analise de Variância (ANOVA) com o teste de Tukey com o nível de significância a 5\%, houve diferença significativa entre os diferentes níveis de umidade, como pode ser observado na Tabela \ref{anova}.
+
+
+
+
+\begin{figure}[h!]  
+\centering
+\subfigure[ref1][Diferença Generalizada]{\includegraphics[width=5cm]{figure/dgs/umidade_1.png}}
+\qquad
+\subfigure[ref2][Histograma da amostra]{\includegraphics[width=5cm]{figure/histograma/umidade_1.png}}
+\caption{(a) Diferença Generalizada e (b) Histograma do solo a 13\% de umidade.}
+\label{atividades1}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\subfigure[ref3][Diferença Generalizada]{\includegraphics[width=5cm]{figure/dgs/umidade_2.png}}
+\qquad
+\subfigure[ref4][Histograma da amostra]{\includegraphics[width=5cm]{figure/histograma/umidade_2.png}}
+\caption{(a) Diferença Generalizada e (b) Histograma do solo a 16\% de umidade.}
+\label{atividades2}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\subfigure[ref5][Diferença Generalizada]{\includegraphics[width=5cm]{figure/dgs/umidade_3.png}}
+\qquad
+\subfigure[ref6][Histograma da amostra]{\includegraphics[width=5cm]{figure/histograma/umidade_3.png}}
+\caption{(a) Diferença Generalizada e (b) Histograma do solo a 19\% de umidade.}
+\label{atividades3}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\subfigure[ref7][Diferença Generalizada]{\includegraphics[width=5cm]{figure/dgs/umidade_4.png}}
+\qquad
+\subfigure[ref8][Histograma da amostra]{\includegraphics[width=5cm]{figure/histograma/umidade_4.png}}
+\qquad
+\caption{(a) Diferença Generalizada e (b) Histograma do solo a 21\% de umidade.}
+\label{atividades4}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+
+\subfigure[ref9][Diferença Generalizada]{\includegraphics[width=5cm]{figure/dgs/umidade_5.png}}
+\qquad
+\subfigure[ref10][Histograma da amostra]{\includegraphics[width=5cm]{figure/histograma/umidade_5.png}}
+\qquad
+\caption{(a) Diferença Generalizada e (b) Histograma do solo a 24\% de umidade.}
+\label{atividades5}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+
+\subfigure[ref11][Diferença Generalizada]{\includegraphics[width=5cm]{figure/dgs/umidade_6.png}}
+\qquad
+\subfigure[ref12][Histograma da amostra]{\includegraphics[width=5cm]{figure/histograma/umidade_6.png}}
+\qquad
+\caption{(a) Diferença Generalizada e (b) Histograma do solo a 27\% de umidade.}
+\label{atividades6}
+\end{figure}
+
+\begin{figure}[]
+\centering
+\subfigure[ref13][Diferença Generalizada]{\includegraphics[width=5cm]{figure/dgs/umidade_7.png}}
+\qquad
+\subfigure[ref14][Histograma da amostra]{\includegraphics[width=5cm]{figure/histograma/umidade_7.png}}
+\caption{(a) Diferença Generalizada e (b) Histograma do solo a 30\% de umidade.}
+\label{atividades7}
+\end{figure}
+
+
+
+
+\clearpage
+\section{Conclusion}
+Este trabalho apresentou resultados favoráveis ao avaliar não-destrutivamente os níveis de umidade do argissolo vermelho-amarelo através do uso de processamento de imagens baseado no biospeckle dinâmico associando-as a métodos rotineiros e numéricos, tanto para amostragem espectral tendo como base o DG ou amostragem numérica baseado no MI. Descobrimos que o momento de segunda ordem MI é sensível a mudança nos níveis de umidade até a taxa de 24\% na umidade, se comportando de forma aleatória com o aumento da quantidade de água no solo,  médio dos grãos speckle.
+\\
+
+
+\bibliography{mendeley}
+
+\end{document}
