@@ -15,7 +15,7 @@
 \usepackage{hhline} % para usar linha dupla na tabela
 \usepackage{tabularx} % para igualar colunas
 \usepackage{dcolumn} % para efetuar alinhamento
-
+\usepackage{amsmath}
 \usepackage[table,xcdraw]{xcolor}
 \usepackage{graphicx}      % include this line if your document contains figures
 \usepackage{indentfirst}
@@ -53,26 +53,28 @@ Lycopersicon esculentum, Processamento de imagens, Biospeckle Laser.
 
 \section{Introduction}
 
-Este trabalho baseia-se na ocorrência de um fenômeno óptico conhecido na física como speckle dinâmico, tendo sua nomenclatura, sofrido alterações à medida que se descobriu novas aplicações para o mesmo, atualmente conhecido como biospeckle dinâmico. Uma dessas alterações atribui ao fenômeno a denominação biospeckle, sendo esta, adotada preferencialmente quando o fenômeno ocorre em consequência de alguma atividade biológica 
-\citet{Rodrigues2007} entre outros autores, descreve o fenômeno da seguinte forma:
+Este trabalho baseia-se na ocorrência de um fenômeno óptico conhecido na física como speckle dinâmico, tendo sua nomenclatura, sofrido alterações à medida que se descobriu novas aplicações para o mesmo, atualmente é conhecido como biospeckle dinâmico. \citet{Rodrigues2007} entre outros autores, descreve o fenômeno da seguinte forma:
 \begin{citacao} %recuo a 4cm citação direta
 “O biospeckle ou speckle dinâmico é um fenômeno óptico de interferência que ocorre quando há incidência de luz coerente em materiais, cujas superfícies sejam opticamente rugosas e que possuem algum tipo de atividade."
 \end{citacao}
 
-O embasamento teórico e experimental aponta no sentido de que é possível identificar a frequência de biospeckle que sofre interferência da variação do comportamento do fruto em relação a mudanças durante a maturação \cite{Zdunek2014}. Em materiais biológicos, os níveis de atividades estão diretamente relacionados com a viabilidade celular, troca de gases, respiração, atividade microbiana e atividade de água (aw). Este tipo de análise é importante, pois, se aplicada na fase de pós-colheita, pode abrir caminho para diversas aplicações como o desenvolvimento de sensores para avaliação qualidade do fruto, bem como a identificação do tempo de prateleira que o fruto pode suportar. 
- Por esta razão, o fenômeno tem sido estudado como uma potencial ferramenta na análise de qualidade e viabilidade de diversos materiais biológicos, como a viabilidade de sêmem \cite{Henrique2007a}, viabilidade de sementes arbóreas \cite{Aparecida2011}, mapeamento de atividade de água residuais \cite{Viana2017}. 
-Na Engenharia Agrícola os esforços no emprego da técnica têm se concentrado na busca por métodos rápidos, objetivos e não destrutivos para a avaliação de materiais biológicos, sobretudo na área de pós-colheita, sendo os principais estudos relacionados à, mapeamento de áreas com atividades distintas \cite{Rabelo2005}, avaliação da qualidade do grão de café \cite{Viana2017}, do teor de água e identificação de espécies de fungos \cite{Hadian2008a}. 
-As principais técnicas empregadas na análise do fenômeno são baseadas na variação temporal dos dados com estatísticas de primeira e segunda ordem, tais como a História Temporal do Speckle (STS) e as Matrizes de Ocorrências Modificadas (MOC), permitindo tanto a criação de mapas de atividades, empregando técnicas tais como as Diferenças Generalizadas (DG) e o Método de Fuji, como a quantificação do fenômeno, empregando a técnica conhecida como Momento de Inércia (MI) ou Módulo de Dispersão de Intensidades (MDI). 
-Até o momento, as propostas de utilização do biospeckle laser têm ficado restritas ao laboratório, uma vez que diversos fatores como a vibração ambiental e ruídos externos, podem interferir nas medições, exigindo que as mesmas sejam feitas em ambiente controlado. No entanto, estudos recentes envolvendo a análise de bandas de frequências do biospeckle laser \cite{Lama2016}, demonstram ser possível utilizar as Transformadas de Wavelets (TW) e as Transformadas de Fourier (TF) e Transformada de Fourier Janelada (TFJ), para isolar frequências do padrão de atividade do biospeckle, permitindo assim, estabelecer uma correlação entre determinadas frequências e os elementos físicos e/ou biológicos que as perturbaram.
+O embasamento teórico e experimental aponta no sentido de que é possível identificar à frequência em que biospeckle sofre interferência da variação do comportamento do fruto em relação a mudanças durante a maturação \cite{Zdunek2014}. Em materiais biológicos, os níveis de atividades estão diretamente relacionados com a viabilidade celular, troca de gases, respiração, atividade microbiana e atividade de água (aw). 
+ Por esta razão, o fenômeno tem sido estudado como uma potencial ferramenta na análise de qualidade e viabilidade de diversos materiais biológicos, como a viabilidade de sêmem bovino \cite{Henrique2007a}, viabilidade de sementes arbóreas \citep{Aparecida2011} e qualidade de frutos \citep{Cotching2018}.
 
-Sabe-se que os avanços mais notáveis no campo de máquinas agrícolas dos últimos tempos têm se dado no campo da agricultura de precisão, que busca o controle de forma precisa dos parâmetros e variáveis responsáveis por influenciar toda cadeia produtiva, como por exemplo, o tempo de prateleira dos frutos. Para atingir este propósito, sensores são instalados nas máquinas, permitindo que os dados referentes à qualidade seja comparados com outros fatores, o que possibilita um controle mais efetivo, preciso e econômico dos parâmetros que elevam o valor econômico. Por outro lado, Um dos fatores que está intimamente relacionado com a produtividade agrícola, diz respeito à controle e conservação pós-colheira. A atividade fisiológica do fruto e responsável durabilidade deste sendo determinante o entendimento e o controle das ações fisiológicas que possam diminuir a qualidade e o tempo do fruto. No entanto, os métodos usuais atualmente são deletérios,e probabilísticos para produção em grande escala, além de trazer prejuízo pelo descarte das amostras, levam um certo tempo para avaliar a durabilidade e o estado atual de maturação. O embasamento teórico associado ao fenômeno biospeckle laser, permite supor que as atividades de maturação do tomate podem ser quantificada de forma indireta, e suas perturbações nas frequências de atividade podem ser estudadas e classificadas com técnicas de análise de frequência.
-Diante dos fatos apresentados, este projeto visa propor o estudo e modelamento da atividade de maturação do tomate IPA6 corroborando com métodos utilizados atualmente. Este conhecimento será importante, pois no futuro, poderá ser usado para o desenvolvimento de sensores que permitirão indicar de forma indireta, a qualidade do fruto, bem como seu tempo de prateleira, contribuindo para a agregação de valor no mercado comercial de hortaliças. 
+% aqui inicia a parte de tomates
+O tomateiro é uma planta de ciclo curto, do tipo climatérico e sofre com diversas alterações em sua característica em relação a cor \citep{santana2017infodengue}, firmeza, aroma, e sabor \citep{CarmeloLuisGustavoPaulino;FerreiraMarcosDavid;GimenezCalbo2015} ao logo de sua vida útil 
+A tomaticultura apresenta altas perdas da qualidade, as quais ocorrem do plantio até o consumo final. Com relação a estas perdas, diversos métodos de análise foram elaborados buscando um melhor controle da qualidade ideal. 
 
+% aqui inicia a parte da eng. agrí
+Sabe-se que os avanços mais notáveis no campo de máquinas agrícolas dos últimos tempos têm se dado no campo da agricultura de precisão, que busca ser feita de forma precisa nos parâmetros e variáveis responsáveis por influenciar toda cadeia produtiva, como por exemplo, o tempo de prateleira dos frutos. Para atingir este propósito, sensores são instalados em máquinas, permitindo que os dados referentes à qualidade sejam comparados com outros fatores, o que possibilita um controle mais efetivo, preciso e econômico.
+Diante dos fatos apresentados, este artigo visou propor o estudo e modelamento da atividade de maturação do tomate IPA6 corroborando com métodos utilizados atualmente. Este conhecimento será importante, pois no futuro, poderá ser usado para o desenvolvimento de sensores que permitirão indicar de forma indireta, a qualidade do fruto, bem como seu tempo de prateleira, contribuindo para a agregação de valor no mercado comercial de hortaliças. 
 
 
 \section{Materials and methods}
 
 \subsection{Análises físico-químicas} 
+
+Para  determinação da acidez total titulável e sólidos soluveis totais foram utilizadas as metodologias descritas por \cite{Dubois}. Quanto a Firmeza e cor das amostras foram utilizados métodos descritos por \citep{Tecnico}, levando em consideração que para firmeza foi utilizada a ponteira de prova com 8mm de diamentro e para coloração o sistema L*a*b*.
 
 %\newpage
 
@@ -204,6 +206,9 @@ Os dados mostram haver correlação entre a perda de massa fresca das amostas e 
 \section{Conclusion}
 Este trabalho apresentou resultados favoráveis ao avaliar não-destrutivamente os níveis de maturação do tomate Caline IPA-06 através do uso de processamento de imagens baseado no biospeckle dinâmico associando-as a métodos rotineiros e numéricos. Tanto para amostragem espectral tendo como base o DG ou amostragem numérica baseado no MI. Descobrimos que o momento de inércia em segunda ordem (MI) é sensível a mudança nos níveis de massa fresca, conforme se perde a quantidade de massa do fruto se reduziu a ocorrência do fenômeno.
 
+
+\newpage
+\section{Reference}
 \bibliography{mendeley}
 
 \end{document}
